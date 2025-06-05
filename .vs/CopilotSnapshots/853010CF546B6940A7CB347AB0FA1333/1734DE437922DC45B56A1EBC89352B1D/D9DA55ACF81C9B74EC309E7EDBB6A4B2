@@ -1,0 +1,109 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+using System.Xml.Serialization;
+
+namespace EventDiary
+{
+    public class EventManager
+    {
+        private readonly string dataFilePath;
+        private List<EventInfo> events = new List<EventInfo>();
+        private Calendar calendar;
+
+        public EventManager(string dataFilePath = "eventdata.json")
+        {
+            this.dataFilePath = dataFilePath;
+            calendar = new Calendar();
+            LoadEvents();
+        }
+
+        public List<EventInfo> GetAllEvents()
+        {
+            return events;
+        }
+
+        public void AddEvent(string eventName, DateTime eventDate)
+        {
+            var eventInfo = new EventInfo(eventName, eventDate);
+            events.Add(eventInfo);
+            
+            // Ensure the calendar structure exists for this date
+            EnsureCalendarStructureExists(eventDate);
+            
+            // Add the event to the calendar structure
+            var year = calendar.Years.Find(y => y.Value == eventDate.Year);
+            var month = year.Months.Find(m => m.Value == eventDate.Month);
+            var day = month.Days.Find(d => d.Value == eventDate.Day);
+            var hour = day.Hours.Find(h => h.Value == eventDate.Hour);
+            
+            hour.Events.Add(eventInfo);
+            
+            SaveEvents();
+        }
+
+        private void EnsureCalendarStructureExists(DateTime date)
+        {
+            // Make sure the year exists
+            if (!calendar.Years.Exists(y => y.Value == date.Year))
+            {
+                calendar.AddYear(date.Year);
+            }
+        }
+
+        private void SaveEvents()
+        {
+            try
+            {
+                // Serialize the event list using System.Text.Json
+                string jsonString = JsonSerializer.Serialize(events, new JsonSerializerOptions 
+                { 
+                    WriteIndented = true 
+                });
+                File.WriteAllText(dataFilePath, jsonString);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error saving events: {ex.Message}");
+            }
+        }
+
+        private void LoadEvents()
+        {
+            try
+            {
+                if (File.Exists(dataFilePath))
+                {
+                    string jsonString = File.ReadAllText(dataFilePath);
+                    events = JsonSerializer.Deserialize<List<EventInfo>>(jsonString) ?? new List<EventInfo>();
+                    
+                    // Rebuild the calendar structure based on loaded events
+                    RebuildCalendarStructure();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error loading events: {ex.Message}");
+                events = new List<EventInfo>();
+            }
+        }
+
+        private void RebuildCalendarStructure()
+        {
+            calendar = new Calendar();
+            
+            foreach (var eventInfo in events)
+            {
+                EnsureCalendarStructureExists(eventInfo.EventDate);
+                
+                var year = calendar.Years.Find(y => y.Value == eventInfo.EventDate.Year);
+                var month = year.Months.Find(m => m.Value == eventInfo.EventDate.Month);
+                var day = month.Days.Find(d => d.Value == eventInfo.EventDate.Day);
+                var hour = day.Hours.Find(h => h.Value == eventInfo.EventDate.Hour);
+                
+                hour.Events.Add(eventInfo);
+            }
+        }
+    }
+}

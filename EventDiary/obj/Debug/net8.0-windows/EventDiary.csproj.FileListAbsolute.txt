@@ -1,0 +1,16 @@
+C:\Users\athar\source\repos\EventDiary\EventDiary\bin\Debug\net8.0-windows\EventDiary.exe
+C:\Users\athar\source\repos\EventDiary\EventDiary\bin\Debug\net8.0-windows\EventDiary.deps.json
+C:\Users\athar\source\repos\EventDiary\EventDiary\bin\Debug\net8.0-windows\EventDiary.runtimeconfig.json
+C:\Users\athar\source\repos\EventDiary\EventDiary\bin\Debug\net8.0-windows\EventDiary.dll
+C:\Users\athar\source\repos\EventDiary\EventDiary\bin\Debug\net8.0-windows\EventDiary.pdb
+C:\Users\athar\source\repos\EventDiary\EventDiary\obj\Debug\net8.0-windows\EventDiary.Form1.resources
+C:\Users\athar\source\repos\EventDiary\EventDiary\obj\Debug\net8.0-windows\EventDiary.csproj.GenerateResource.cache
+C:\Users\athar\source\repos\EventDiary\EventDiary\obj\Debug\net8.0-windows\EventDiary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\athar\source\repos\EventDiary\EventDiary\obj\Debug\net8.0-windows\EventDiary.AssemblyInfoInputs.cache
+C:\Users\athar\source\repos\EventDiary\EventDiary\obj\Debug\net8.0-windows\EventDiary.AssemblyInfo.cs
+C:\Users\athar\source\repos\EventDiary\EventDiary\obj\Debug\net8.0-windows\EventDiary.csproj.CoreCompileInputs.cache
+C:\Users\athar\source\repos\EventDiary\EventDiary\obj\Debug\net8.0-windows\EventDiary.dll
+C:\Users\athar\source\repos\EventDiary\EventDiary\obj\Debug\net8.0-windows\refint\EventDiary.dll
+C:\Users\athar\source\repos\EventDiary\EventDiary\obj\Debug\net8.0-windows\EventDiary.pdb
+C:\Users\athar\source\repos\EventDiary\EventDiary\obj\Debug\net8.0-windows\EventDiary.genruntimeconfig.cache
+C:\Users\athar\source\repos\EventDiary\EventDiary\obj\Debug\net8.0-windows\ref\EventDiary.dll
