@@ -1,12 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace EventDiary
 {
@@ -19,34 +12,22 @@ namespace EventDiary
         private DataGridView dgvEvents;
         private Label lblEventName;
         private Label lblCalendar;
-        private Label lblTitle;
 
         public Form1()
         {
             InitializeComponent();
-            // Use the new XML-based EventManager
-            eventManager = new EventManager("eventdata.xml");
+            eventManager = new EventManager();
             InitializeCustomComponents();
             LoadEvents();
         }
 
         private void InitializeCustomComponents()
         {
-            // Form Title
-            lblTitle = new Label
-            {
-                Text = "Event Diary with XML Serialization",
-                Location = new Point(20, 10),
-                Font = new Font(Font.FontFamily, 12, FontStyle.Bold),
-                AutoSize = true
-            };
-            this.Controls.Add(lblTitle);
-
             // Event Name Label
             lblEventName = new Label
             {
                 Text = "Event Name:",
-                Location = new Point(20, 50),
+                Location = new Point(20, 20),
                 AutoSize = true
             };
             this.Controls.Add(lblEventName);
@@ -54,7 +35,7 @@ namespace EventDiary
             // Event Name TextBox
             txtEventName = new TextBox
             {
-                Location = new Point(20, 75),
+                Location = new Point(20, 50),
                 Size = new Size(250, 30)
             };
             this.Controls.Add(txtEventName);
@@ -63,7 +44,7 @@ namespace EventDiary
             lblCalendar = new Label
             {
                 Text = "Select Date:",
-                Location = new Point(20, 115),
+                Location = new Point(20, 90),
                 AutoSize = true
             };
             this.Controls.Add(lblCalendar);
@@ -71,7 +52,7 @@ namespace EventDiary
             // Custom Calendar Control
             calendarControl = new EventCalendarControl
             {
-                Location = new Point(20, 140),
+                Location = new Point(20, 120),
                 Size = new Size(280, 200)
             };
             this.Controls.Add(calendarControl);
@@ -80,7 +61,7 @@ namespace EventDiary
             btnSubmit = new Button
             {
                 Text = "Add Event",
-                Location = new Point(20, 360),
+                Location = new Point(20, 340),
                 Size = new Size(120, 35)
             };
             btnSubmit.Click += BtnSubmit_Click;
@@ -89,7 +70,7 @@ namespace EventDiary
             // DataGridView for Events
             dgvEvents = new DataGridView
             {
-                Location = new Point(320, 75),
+                Location = new Point(320, 50),
                 Size = new Size(450, 325),
                 AllowUserToAddRows = false,
                 AllowUserToDeleteRows = false,
@@ -123,7 +104,7 @@ namespace EventDiary
 
             DateTime eventDate = calendarControl.SelectedDate;
             
-            // Add the event using the XML-based EventManager
+            // Add the event
             eventManager.AddEvent(eventName, eventDate);
             
             // Refresh the grid
@@ -132,7 +113,7 @@ namespace EventDiary
             // Clear the input field
             txtEventName.Text = string.Empty;
             
-            MessageBox.Show("Event added successfully and saved as XML!", "Success", 
+            MessageBox.Show("Event added successfully!", "Success", 
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         
