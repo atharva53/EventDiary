@@ -24,7 +24,7 @@ namespace EventDiary
         public Form1()
         {
             InitializeComponent();
-            // Use the new XML-based EventManager
+            
             eventManager = new EventManager("eventdata.xml");
             InitializeCustomComponents();
             LoadEvents();
@@ -32,7 +32,7 @@ namespace EventDiary
 
         private void InitializeCustomComponents()
         {
-            // Form Title
+            
             lblTitle = new Label
             {
                 Text = "Event Diary with XML Serialization",
@@ -42,7 +42,7 @@ namespace EventDiary
             };
             this.Controls.Add(lblTitle);
 
-            // Event Name Label
+           
             lblEventName = new Label
             {
                 Text = "Event Name:",
@@ -51,7 +51,7 @@ namespace EventDiary
             };
             this.Controls.Add(lblEventName);
 
-            // Event Name TextBox
+            
             txtEventName = new TextBox
             {
                 Location = new Point(20, 75),
@@ -59,7 +59,7 @@ namespace EventDiary
             };
             this.Controls.Add(txtEventName);
 
-            // Calendar Label
+            
             lblCalendar = new Label
             {
                 Text = "Select Date:",
@@ -68,7 +68,7 @@ namespace EventDiary
             };
             this.Controls.Add(lblCalendar);
 
-            // Custom Calendar Control
+            
             calendarControl = new EventCalendarControl
             {
                 Location = new Point(20, 140),
@@ -76,7 +76,7 @@ namespace EventDiary
             };
             this.Controls.Add(calendarControl);
 
-            // Submit Button
+            
             btnSubmit = new Button
             {
                 Text = "Add Event",
@@ -89,6 +89,8 @@ namespace EventDiary
             // DataGridView for Events
             dgvEvents = new DataGridView
             {
+
+
                 Location = new Point(320, 75),
                 Size = new Size(450, 325),
                 AllowUserToAddRows = false,
@@ -104,7 +106,7 @@ namespace EventDiary
             
             this.Controls.Add(dgvEvents);
 
-            // Form properties
+            
             this.Text = "Event Diary";
             this.Size = new Size(800, 450);
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -123,13 +125,13 @@ namespace EventDiary
 
             DateTime eventDate = calendarControl.SelectedDate;
             
-            // Add the event using the XML-based EventManager
+        
             eventManager.AddEvent(eventName, eventDate);
             
-            // Refresh the grid
+            
             LoadEvents();
             
-            // Clear the input field
+          
             txtEventName.Text = string.Empty;
             
             MessageBox.Show("Event added successfully and saved as XML!", "Success", 

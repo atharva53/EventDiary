@@ -1,18 +1,20 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace EventDiary
 {
     [Serializable]
-    [DataContract]
+    [XmlRoot("Hour")]
     public class Hour
     {
-        [DataMember]
+        [XmlAttribute("Value")]
         public int Value { get; set; }
         
-        [DataMember]
+        [XmlArray("Events")]
+        [XmlArrayItem("Event")]
         public List<EventInfo> Events { get; set; } = new List<EventInfo>();
 
         public Hour() { }
@@ -24,17 +26,19 @@ namespace EventDiary
     }
 
     [Serializable]
-    [DataContract]
+    [XmlRoot("Day")]
     public class Day
     {
-        [DataMember]
+        [XmlAttribute("Value")]
         public int Value { get; set; }
         
-        [DataMember]
+        [XmlArray("Hours")]
+        [XmlArrayItem("Hour")]
         public List<Hour> Hours { get; set; } = new List<Hour>();
 
         public Day() 
         {
+            
             for (int i = 0; i < 24; i++)
             {
                 Hours.Add(new Hour(i));
@@ -48,13 +52,14 @@ namespace EventDiary
     }
 
     [Serializable]
-    [DataContract]
+    [XmlRoot("Month")]
     public class Month
     {
-        [DataMember]
+        [XmlAttribute("Value")]
         public int Value { get; set; }
         
-        [DataMember]
+        [XmlArray("Days")]
+        [XmlArrayItem("Day")]
         public List<Day> Days { get; set; } = new List<Day>();
 
         public Month() { }
@@ -62,6 +67,7 @@ namespace EventDiary
         public Month(int value, int daysInMonth)
         {
             Value = value;
+            
             
             for (int i = 1; i <= daysInMonth; i++)
             {
@@ -71,13 +77,14 @@ namespace EventDiary
     }
 
     [Serializable]
-    [DataContract]
+    [XmlRoot("Year")]
     public class Year
     {
-        [DataMember]
+        [XmlAttribute("Value")]
         public int Value { get; set; }
         
-        [DataMember]
+        [XmlArray("Months")]
+        [XmlArrayItem("Month")]
         public List<Month> Months { get; set; } = new List<Month>();
 
         public Year() { }
@@ -90,6 +97,7 @@ namespace EventDiary
 
         private void InitializeMonths()
         {
+            
             for (int i = 1; i <= 12; i++)
             {
                 int daysInMonth = DateTime.DaysInMonth(Value, i);
@@ -99,14 +107,16 @@ namespace EventDiary
     }
 
     [Serializable]
-    [DataContract]
+    [XmlRoot("Calendar")]
     public class Calendar
     {
-        [DataMember]
+        [XmlArray("Years")]
+        [XmlArrayItem("Year")]
         public List<Year> Years { get; set; } = new List<Year>();
 
         public Calendar() 
         {
+            
             AddYear(DateTime.Now.Year);
         }
 
@@ -120,13 +130,13 @@ namespace EventDiary
     }
     
     [Serializable]
-    [DataContract]
+    [XmlRoot("EventInfo")]
     public class EventInfo
     {
-        [DataMember]
+        [XmlElement("EventName")]
         public string EventName { get; set; }
         
-        [DataMember]
+        [XmlElement("EventDate")]
         public DateTime EventDate { get; set; }
 
         public EventInfo() { }

@@ -1,8 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization;
-using System.Xml;
+using System.Xml.Serialization;
 
 namespace EventDiary
 {
@@ -28,17 +27,24 @@ namespace EventDiary
         {
             var eventInfo = new EventInfo(eventName, eventDate);
             events.Add(eventInfo);
+            
+            
             EnsureCalendarStructureExists(eventDate);
+            
+          
             var year = calendar.Years.Find(y => y.Value == eventDate.Year);
             var month = year.Months.Find(m => m.Value == eventDate.Month);
             var day = month.Days.Find(d => d.Value == eventDate.Day);
             var hour = day.Hours.Find(h => h.Value == eventDate.Hour);
+            
             hour.Events.Add(eventInfo);
+            
             SaveEvents();
         }
 
         private void EnsureCalendarStructureExists(DateTime date)
         {
+            
             if (!calendar.Years.Exists(y => y.Value == date.Year))
             {
                 calendar.AddYear(date.Year);
@@ -49,11 +55,10 @@ namespace EventDiary
         {
             try
             {
-                DataContractSerializer serializer = new DataContractSerializer(typeof(List<EventInfo>));
+                XmlSerializer serializer = new XmlSerializer(typeof(List<EventInfo>));
                 using (FileStream fs = new FileStream(dataFilePath, FileMode.Create))
-                using (XmlWriter writer = XmlWriter.Create(fs, new XmlWriterSettings { Indent = true }))
                 {
-                    serializer.WriteObject(writer, events);
+                    serializer.Serialize(fs, events);
                 }
             }
             catch (Exception ex)
@@ -68,13 +73,15 @@ namespace EventDiary
             {
                 if (File.Exists(dataFilePath))
                 {
-                    DataContractSerializer serializer = new DataContractSerializer(typeof(List<EventInfo>));
+                    
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<EventInfo>));
                     using (FileStream fs = new FileStream(dataFilePath, FileMode.Open))
-                    using (XmlReader reader = XmlReader.Create(fs))
                     {
-                        events = (List<EventInfo>)(serializer.ReadObject(reader) ?? new List<EventInfo>());
+                        events = (List<EventInfo>)serializer.Deserialize(fs) ?? new List<EventInfo>();
                     }
                     
+                   
+                    //RebuildCalendarStructure();
                 }
             }
             catch (Exception ex)
@@ -83,5 +90,7 @@ namespace EventDiary
                 events = new List<EventInfo>();
             }
         }
+
+        
     }
 }

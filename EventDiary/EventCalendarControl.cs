@@ -38,18 +38,14 @@ namespace EventDiary
         {
             calendar = new MonthCalendar();
             SuspendLayout();
-            // 
-            // calendar
-            // 
+            
             calendar.Dock = DockStyle.Fill;
             calendar.Location = new Point(0, 0);
             calendar.MaxSelectionCount = 1;
             calendar.Name = "calendar";
             calendar.TabIndex = 0;
             calendar.DateChanged += Calendar_DateChanged;
-            // 
-            // EventCalendarControl
-            // 
+            
             Controls.Add(calendar);
             Name = "EventCalendarControl";
             Size = new Size(250, 250);

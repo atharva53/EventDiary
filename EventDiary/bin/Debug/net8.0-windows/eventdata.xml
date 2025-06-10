@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ArrayOfEventInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfEventInfo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/EventDiary">
   <EventInfo>
+    <EventDate>2025-06-12T00:00:00</EventDate>
     <EventName>Birthday</EventName>
-    <EventDate>2025-06-07T00:00:00</EventDate>
+  </EventInfo>
+  <EventInfo>
+    <EventDate>2025-06-12T00:00:00</EventDate>
+    <EventName>Meeting with Team</EventName>
   </EventInfo>
 </ArrayOfEventInfo>

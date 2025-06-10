@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
@@ -74,7 +74,7 @@ namespace EventDiary
                     {
                         events = (List<EventInfo>)(serializer.ReadObject(reader) ?? new List<EventInfo>());
                     }
-                    
+                    // Optionally rebuild calendar structure here if needed
                 }
             }
             catch (Exception ex)
