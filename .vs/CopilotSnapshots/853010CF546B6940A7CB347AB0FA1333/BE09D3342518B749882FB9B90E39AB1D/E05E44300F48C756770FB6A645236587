@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
@@ -11,17 +11,13 @@ namespace EventDiary
         public int Value { get; set; }
         
         [DataMember]
-        public List<string> EventNames { get; set; }
+        public List<string> EventNames { get; set; } = new List<string>();
 
-        public Hour()
-        {
-            EventNames = new List<string>();
-        }
+        public Hour() { }
 
         public Hour(int value)
         {
             Value = value;
-            EventNames = new List<string>();
         }
     }
 
@@ -32,11 +28,14 @@ namespace EventDiary
         public int Value { get; set; }
         
         [DataMember]
-        public List<Hour> Hours { get; set; }
+        public List<Hour> Hours { get; set; } = new List<Hour>();
 
-        public Day()
+        public Day() 
         {
-            Hours = new List<Hour>();
+            for (int i = 0; i < 24; i++)
+            {
+                Hours.Add(new Hour(i));
+            }
         }
 
         public Day(int value) : this()
@@ -52,16 +51,18 @@ namespace EventDiary
         public int Value { get; set; }
         
         [DataMember]
-        public List<Day> Days { get; set; }
+        public List<Day> Days { get; set; } = new List<Day>();
 
-        public Month()
-        {
-            Days = new List<Day>();
-        }
+        public Month() { }
 
-        public Month(int value) : this()
+        public Month(int value, int daysInMonth)
         {
             Value = value;
+            
+            for (int i = 1; i <= daysInMonth; i++)
+            {
+                Days.Add(new Day(i));
+            }
         }
     }
 
@@ -72,16 +73,23 @@ namespace EventDiary
         public int Value { get; set; }
         
         [DataMember]
-        public List<Month> Months { get; set; }
+        public List<Month> Months { get; set; } = new List<Month>();
 
-        public Year()
-        {
-            Months = new List<Month>();
-        }
+        public Year() { }
 
-        public Year(int value) : this()
+        public Year(int value)
         {
             Value = value;
+            InitializeMonths();
+        }
+
+        private void InitializeMonths()
+        {
+            for (int i = 1; i <= 12; i++)
+            {
+                int daysInMonth = DateTime.DaysInMonth(Value, i);
+                Months.Add(new Month(i, daysInMonth));
+            }
         }
     }
 
@@ -89,11 +97,19 @@ namespace EventDiary
     public class Calendar
     {
         [DataMember]
-        public List<Year> Years { get; set; }
+        public List<Year> Years { get; set; } = new List<Year>();
 
-        public Calendar()
+        public Calendar() 
         {
-            Years = new List<Year>();
+            AddYear(DateTime.Now.Year);
+        }
+
+        public void AddYear(int year)
+        {
+            if (!Years.Exists(y => y.Value == year))
+            {
+                Years.Add(new Year(year));
+            }
         }
     }
     

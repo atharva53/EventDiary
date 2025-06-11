@@ -1,0 +1,74 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Xml;
+using System.Linq;
+
+namespace EventDiary
+{
+    public class EventManager
+    {
+        private readonly string dataFilePath;
+        private List<EventInfo> events;
+
+        public EventManager(string dataFilePath = "eventdata.xml")
+        {
+            this.dataFilePath = dataFilePath;
+            events = new List<EventInfo>();
+            LoadEvents();
+        }
+
+        public List<EventInfo> GetAllEvents()
+        {
+            return new List<EventInfo>(events);
+        }
+
+        public void AddEvent(string eventName, DateTime eventDate)
+        {
+            var now = DateTime.Now;
+            var eventDateWithHour = new DateTime(eventDate.Year, eventDate.Month, eventDate.Day, now.Hour, 0, 0);
+            var eventInfo = new EventInfo(eventName, eventDateWithHour);
+            events.Add(eventInfo);
+            SaveEvents();
+        }
+
+        private void SaveEvents()
+        {
+            try
+            {
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<EventInfo>));
+                using (FileStream fs = new FileStream(dataFilePath, FileMode.Create))
+                using (XmlWriter writer = XmlWriter.Create(fs, new XmlWriterSettings { Indent = true }))
+                {
+                    serializer.WriteObject(writer, events);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error saving events: {ex.Message}");
+            }
+        }
+
+        private void LoadEvents()
+        {
+            try
+            {
+                if (File.Exists(dataFilePath))
+                {
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(List<EventInfo>));
+                    using (FileStream fs = new FileStream(dataFilePath, FileMode.Open))
+                    using (XmlReader reader = XmlReader.Create(fs))
+                    {
+                        events = (List<EventInfo>)(serializer.ReadObject(reader) ?? new List<EventInfo>());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error loading events: {ex.Message}");
+                events = new List<EventInfo>();
+            }
+        }
+    }
+}

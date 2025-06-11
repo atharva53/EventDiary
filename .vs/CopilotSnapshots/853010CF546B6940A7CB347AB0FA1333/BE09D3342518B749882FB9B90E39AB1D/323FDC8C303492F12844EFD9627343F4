@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
@@ -152,5 +152,48 @@ namespace EventDiary
                 calendar = new Calendar();
             }
         }
+    }
+
+    [DataContract]
+    public class Calendar
+    {
+        [DataMember]
+        public List<Year> Years { get; set; } = new List<Year>();
+    }
+
+    [DataContract]
+    public class Year
+    {
+        [DataMember]
+        public int Value { get; set; }
+        [DataMember]
+        public List<Month> Months { get; set; } = new List<Month>();
+    }
+
+    [DataContract]
+    public class Month
+    {
+        [DataMember]
+        public int Value { get; set; }
+        [DataMember]
+        public List<Day> Days { get; set; } = new List<Day>();
+    }
+
+    [DataContract]
+    public class Day
+    {
+        [DataMember]
+        public int Value { get; set; }
+        [DataMember]
+        public List<Hour> Hours { get; set; } = new List<Hour>();
+    }
+
+    [DataContract]
+    public class Hour
+    {
+        [DataMember]
+        public int Value { get; set; }
+        [DataMember]
+        public List<string> EventNames { get; set; } = new List<string>();
     }
 }

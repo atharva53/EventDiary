@@ -1,0 +1,87 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Xml;
+
+namespace EventDiary
+{
+    public class EventManager
+    {
+        private readonly string dataFilePath;
+        private List<EventInfo> events = new List<EventInfo>();
+        private Calendar calendar;
+
+        public EventManager(string dataFilePath = "eventdata.xml")
+        {
+            this.dataFilePath = dataFilePath;
+            calendar = new Calendar();
+            LoadEvents();
+        }
+
+        public List<EventInfo> GetAllEvents()
+        {
+            return events;
+        }
+
+        public void AddEvent(string eventName, DateTime eventDate)
+        {
+            var eventInfo = new EventInfo(eventName, eventDate);
+            events.Add(eventInfo);
+            EnsureCalendarStructureExists(eventDate);
+            var year = calendar.Years.Find(y => y.Value == eventDate.Year);
+            var month = year.Months.Find(m => m.Value == eventDate.Month);
+            var day = month.Days.Find(d => d.Value == eventDate.Day);
+            var hour = day.Hours.Find(h => h.Value == eventDate.Hour);
+            hour.Events.Add(eventInfo);
+            SaveEvents();
+        }
+
+        private void EnsureCalendarStructureExists(DateTime date)
+        {
+            if (!calendar.Years.Exists(y => y.Value == date.Year))
+            {
+                calendar.AddYear(date.Year);
+            }
+        }
+
+        private void SaveEvents()
+        {
+            try
+            {
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<EventInfo>));
+                using (FileStream fs = new FileStream(dataFilePath, FileMode.Create))
+                using (XmlWriter writer = XmlWriter.Create(fs, new XmlWriterSettings { Indent = true }))
+                {
+                    serializer.WriteObject(writer, events);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error saving events: {ex.Message}");
+            }
+        }
+
+        private void LoadEvents()
+        {
+            try
+            {
+                if (File.Exists(dataFilePath))
+                {
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(List<EventInfo>));
+                    using (FileStream fs = new FileStream(dataFilePath, FileMode.Open))
+                    using (XmlReader reader = XmlReader.Create(fs))
+                    {
+                        events = (List<EventInfo>)(serializer.ReadObject(reader) ?? new List<EventInfo>());
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error loading events: {ex.Message}");
+                events = new List<EventInfo>();
+            }
+        }
+    }
+}

@@ -1,11 +1,618 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ArrayOfEventInfo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/EventDiary">
-  <EventInfo>
-    <EventDate>2025-06-12T00:00:00</EventDate>
-    <EventName>Birthday</EventName>
-  </EventInfo>
-  <EventInfo>
-    <EventDate>2025-06-12T00:00:00</EventDate>
-    <EventName>Meeting with Team</EventName>
-  </EventInfo>
-</ArrayOfEventInfo>
+<Calendar xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/EventDiary">
+  <Years>
+    <Year>
+      <Months>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Meeting</d10p1:string>
+                  </EventNames>
+                  <Value>11</Value>
+                </Hour>
+              </Hours>
+              <Value>12</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>BirthDay</d10p1:string>
+                  </EventNames>
+                  <Value>14</Value>
+                </Hour>
+              </Hours>
+              <Value>25</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Deployment</d10p1:string>
+                  </EventNames>
+                  <Value>14</Value>
+                </Hour>
+              </Hours>
+              <Value>20</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Test the Project</d10p1:string>
+                  </EventNames>
+                  <Value>14</Value>
+                </Hour>
+              </Hours>
+              <Value>16</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Going to Trip</d10p1:string>
+                  </EventNames>
+                  <Value>14</Value>
+                </Hour>
+              </Hours>
+              <Value>27</Value>
+            </Day>
+          </Days>
+          <Value>6</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Treasure Hunts</d10p1:string>
+                  </EventNames>
+                  <Value>14</Value>
+                </Hour>
+              </Hours>
+              <Value>2</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Conference</d10p1:string>
+                  </EventNames>
+                  <Value>14</Value>
+                </Hour>
+              </Hours>
+              <Value>4</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Serenity Summit</d10p1:string>
+                  </EventNames>
+                  <Value>14</Value>
+                </Hour>
+              </Hours>
+              <Value>15</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Community Connection Carnival</d10p1:string>
+                  </EventNames>
+                  <Value>14</Value>
+                </Hour>
+              </Hours>
+              <Value>20</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Renaissance Rally</d10p1:string>
+                  </EventNames>
+                  <Value>14</Value>
+                </Hour>
+              </Hours>
+              <Value>24</Value>
+            </Day>
+          </Days>
+          <Value>7</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Corporate Events</d10p1:string>
+                  </EventNames>
+                  <Value>14</Value>
+                </Hour>
+              </Hours>
+              <Value>5</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Royal Occasions</d10p1:string>
+                  </EventNames>
+                  <Value>14</Value>
+                </Hour>
+              </Hours>
+              <Value>11</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Planning Masterclass</d10p1:string>
+                  </EventNames>
+                  <Value>14</Value>
+                </Hour>
+              </Hours>
+              <Value>29</Value>
+            </Day>
+          </Days>
+          <Value>8</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Wedding Entertainment</d10p1:string>
+                  </EventNames>
+                  <Value>14</Value>
+                </Hour>
+              </Hours>
+              <Value>13</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>FunPlans</d10p1:string>
+                  </EventNames>
+                  <Value>14</Value>
+                </Hour>
+              </Hours>
+              <Value>21</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Eden Springs Events</d10p1:string>
+                  </EventNames>
+                  <Value>14</Value>
+                </Hour>
+              </Hours>
+              <Value>30</Value>
+            </Day>
+          </Days>
+          <Value>9</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Fusion Fiesta</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>7</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Catalyst Carnival</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>15</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Dreamworld Venues</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>31</Value>
+            </Day>
+          </Days>
+          <Value>10</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Decorative Events</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>2</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Party Glory</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>23</Value>
+            </Day>
+          </Days>
+          <Value>11</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Evening Unfolds Events</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>19</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>EcoConclave</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>30</Value>
+            </Day>
+          </Days>
+          <Value>12</Value>
+        </Month>
+      </Months>
+      <Value>2025</Value>
+    </Year>
+    <Year>
+      <Months>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>TechFusion Forum</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>10</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Adventure Alcove</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>27</Value>
+            </Day>
+          </Days>
+          <Value>1</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Mosaic Events</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>14</Value>
+            </Day>
+          </Days>
+          <Value>2</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Splendour Events</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>5</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Northern Lights</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>31</Value>
+            </Day>
+          </Days>
+          <Value>3</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Party Phoenix</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>1</Value>
+            </Day>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Magic Memories</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>17</Value>
+            </Day>
+          </Days>
+          <Value>4</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Glamourous Gatherings</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>3</Value>
+            </Day>
+          </Days>
+          <Value>5</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Blissful Banquets</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>9</Value>
+            </Day>
+          </Days>
+          <Value>6</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Spectacular Soirées</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>27</Value>
+            </Day>
+          </Days>
+          <Value>7</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Grand Galas</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>23</Value>
+            </Day>
+          </Days>
+          <Value>8</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Music Festival Mania</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>10</Value>
+            </Day>
+          </Days>
+          <Value>9</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Happy Hour Hangout</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>1</Value>
+            </Day>
+          </Days>
+          <Value>10</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Christmas Cookie</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>26</Value>
+            </Day>
+          </Days>
+          <Value>11</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Friendsgiving Feast</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>6</Value>
+            </Day>
+          </Days>
+          <Value>12</Value>
+        </Month>
+      </Months>
+      <Value>2026</Value>
+    </Year>
+    <Year>
+      <Months>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Trivia Night Tryst</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>11</Value>
+            </Day>
+          </Days>
+          <Value>1</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Valentine’s Day</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>7</Value>
+            </Day>
+          </Days>
+          <Value>2</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Food Truck Fiesta</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>20</Value>
+            </Day>
+          </Days>
+          <Value>3</Value>
+        </Month>
+      </Months>
+      <Value>2027</Value>
+    </Year>
+    <Year>
+      <Months>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Family Reunion Fun</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>2</Value>
+            </Day>
+          </Days>
+          <Value>6</Value>
+        </Month>
+        <Month>
+          <Days>
+            <Day>
+              <Hours>
+                <Hour>
+                  <EventNames xmlns:d10p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                    <d10p1:string>Bridal Shower Bliss</d10p1:string>
+                  </EventNames>
+                  <Value>17</Value>
+                </Hour>
+              </Hours>
+              <Value>5</Value>
+            </Day>
+          </Days>
+          <Value>8</Value>
+        </Month>
+      </Months>
+      <Value>2029</Value>
+    </Year>
+  </Years>
+</Calendar>

@@ -1,0 +1,106 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Xml;
+using System.Linq;
+
+namespace EventDiary
+{
+    public class EventManager
+    {
+        private readonly string dataFilePath;
+        private Calendar calendar;
+
+        public EventManager(string dataFilePath = "eventdata.xml")
+        {
+            this.dataFilePath = dataFilePath;
+            calendar = new Calendar();
+            LoadEvents();
+        }
+
+        public List<EventInfo> GetAllEvents()
+        {
+            
+            var events = new List<EventInfo>();
+            foreach (var year in calendar.Years)
+            {
+                foreach (var month in year.Months)
+                {
+                    foreach (var day in month.Days)
+                    {
+                        foreach (var hour in day.Hours)
+                        {
+                            events.AddRange(hour.Events);
+                        }
+                    }
+                }
+            }
+            return events;
+        }
+
+        public void AddEvent(string eventName, DateTime eventDate)
+        {
+            
+            var now = DateTime.Now;
+            var eventDateWithHour = new DateTime(eventDate.Year, eventDate.Month, eventDate.Day, now.Hour, 0, 0);
+            var eventInfo = new EventInfo(eventName, eventDateWithHour);
+
+            EnsureCalendarStructureExists(eventDateWithHour);
+
+            var year = calendar.Years.Find(y => y.Value == eventDateWithHour.Year);
+            var month = year.Months.Find(m => m.Value == eventDateWithHour.Month);
+            var day = month.Days.Find(d => d.Value == eventDateWithHour.Day);
+            var hour = day.Hours.Find(h => h.Value == eventDateWithHour.Hour);
+            hour.Events.Add(eventInfo);
+
+            SaveEvents();
+        }
+
+        private void EnsureCalendarStructureExists(DateTime date)
+        {
+            if (!calendar.Years.Exists(y => y.Value == date.Year))
+            {
+                calendar.AddYear(date.Year);
+            }
+        }
+
+        private void SaveEvents()
+        {
+            try
+            {
+                DataContractSerializer serializer = new DataContractSerializer(typeof(Calendar));
+                using (FileStream fs = new FileStream(dataFilePath, FileMode.Create))
+                using (XmlWriter writer = XmlWriter.Create(fs, new XmlWriterSettings { Indent = true }))
+                {
+                    serializer.WriteObject(writer, calendar);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error saving events: {ex.Message}");
+            }
+        }
+
+        private void LoadEvents()
+        {
+            try
+            {
+                if (File.Exists(dataFilePath))
+                {
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(Calendar));
+                    using (FileStream fs = new FileStream(dataFilePath, FileMode.Open))
+                    using (XmlReader reader = XmlReader.Create(fs))
+                    {
+                        calendar = (Calendar)(serializer.ReadObject(reader) ?? new Calendar());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error loading events: {ex.Message}");
+                calendar = new Calendar();
+            }
+        }
+    }
+}

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
@@ -30,10 +30,7 @@ namespace EventDiary
                     {
                         foreach (var hour in day.Hours)
                         {
-                            foreach (var eventName in hour.EventNames)
-                            {
-                                events.Add(new EventInfo(eventName, new DateTime(year.Value, month.Value, day.Value, hour.Value, 0, 0)));
-                            }
+                            events.AddRange(hour.Events);
                         }
                     }
                 }
@@ -44,42 +41,26 @@ namespace EventDiary
         public void AddEvent(string eventName, DateTime eventDate)
         {
             var now = DateTime.Now;
-            int yearVal = eventDate.Year;
-            int monthVal = eventDate.Month;
-            int dayVal = eventDate.Day;
-            int hourVal = now.Hour;
+            var eventDateWithHour = new DateTime(eventDate.Year, eventDate.Month, eventDate.Day, now.Hour, 0, 0);
+            var eventInfo = new EventInfo(eventName, eventDateWithHour);
 
-            // Find or create year
-            var year = calendar.Years.FirstOrDefault(y => y.Value == yearVal);
-            if (year == null)
-            {
-                year = new Year { Value = yearVal };
-                calendar.Years.Add(year);
-            }
-            // Find or create month
-            var month = year.Months.FirstOrDefault(m => m.Value == monthVal);
-            if (month == null)
-            {
-                month = new Month { Value = monthVal };
-                year.Months.Add(month);
-            }
-            // Find or create day
-            var day = month.Days.FirstOrDefault(d => d.Value == dayVal);
-            if (day == null)
-            {
-                day = new Day { Value = dayVal };
-                month.Days.Add(day);
-            }
-            // Find or create hour
-            var hour = day.Hours.FirstOrDefault(h => h.Value == hourVal);
-            if (hour == null)
-            {
-                hour = new Hour { Value = hourVal };
-                day.Hours.Add(hour);
-            }
-            // Add event name
-            hour.EventNames.Add(eventName);
+            EnsureCalendarStructureExists(eventDateWithHour);
+
+            var year = calendar.Years.Find(y => y.Value == eventDateWithHour.Year);
+            var month = year.Months.Find(m => m.Value == eventDateWithHour.Month);
+            var day = month.Days.Find(d => d.Value == eventDateWithHour.Day);
+            var hour = day.Hours.Find(h => h.Value == eventDateWithHour.Hour);
+            hour.Events.Add(eventInfo);
+
             SaveEvents();
+        }
+
+        private void EnsureCalendarStructureExists(DateTime date)
+        {
+            if (!calendar.Years.Exists(y => y.Value == date.Year))
+            {
+                calendar.AddYear(date.Year);
+            }
         }
 
         private void SaveEvents()
@@ -114,9 +95,9 @@ namespace EventDiary
                         var prunedDay = new Day { Value = day.Value, Hours = new List<Hour>() };
                         foreach (var hour in day.Hours)
                         {
-                            if (hour.EventNames != null && hour.EventNames.Count > 0)
+                            if (hour.Events != null && hour.Events.Count > 0)
                             {
-                                var prunedHour = new Hour { Value = hour.Value, EventNames = new List<string>(hour.EventNames) };
+                                var prunedHour = new Hour { Value = hour.Value, Events = new List<EventInfo>(hour.Events) };
                                 prunedDay.Hours.Add(prunedHour);
                             }
                         }
